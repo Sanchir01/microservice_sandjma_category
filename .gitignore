@@ -1,3 +1,5 @@
 .idea
 .*.env
 .example_db_backup.sql
+bin
+.bin
