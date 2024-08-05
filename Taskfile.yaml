@@ -1,0 +1,19 @@
+version: "3"
+
+tasks:
+  building:
+    aliases:
+      - build
+    desc:  "build app"
+    cmds:
+      - mkdir test
+      - go build -o ./bin/main ./cmd/main/main.go
+
+
+  running:
+    desc:  "build and running app"
+    aliases:
+      - run
+    deps: [building]
+    cmds:
+      - ./bin/main
