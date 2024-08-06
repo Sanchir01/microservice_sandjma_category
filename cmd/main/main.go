@@ -1,10 +1,13 @@
 package main
 
 import (
+	"github.com/Sanchir01/microservice_sandjma_category/internal/app"
 	"github.com/Sanchir01/microservice_sandjma_category/internal/config"
 	"github.com/Sanchir01/microservice_sandjma_category/pkg/lib/logger/handlers/slogpretty"
 	"log/slog"
 	"os"
+	"os/signal"
+	"syscall"
 )
 
 var (
@@ -17,14 +20,29 @@ func main() {
 
 	lg := setupLogger(cfg.Env)
 
-	lg.Info("starting application", slog.Any("config", cfg))
+	//lg.Info("starting application", slog.Any("config", cfg))
 
-	//TODO: start app
+	application := app.NewApp(lg, cfg.GRPC.Port)
+
+	go func() {
+		application.GRPCSrv.MustRun()
+	}()
+
+	stop := make(chan os.Signal, 1)
+
+	signal.Notify(stop, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)
+
+	sign := <-stop
+
+	lg.Info("stoppping application", slog.String("signal", sign.String()))
+
+	application.GRPCSrv.Stop()
 
 	// TODO: add graceful shutdown
 
 	//TODO: init db
 }
+
 func setupLogger(env string) *slog.Logger {
 	var lg *slog.Logger
 	switch env {

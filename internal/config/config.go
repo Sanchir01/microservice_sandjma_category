@@ -6,15 +6,13 @@ import (
 	"github.com/joho/godotenv"
 	"log"
 	"os"
-	"time"
 )
 
 type Config struct {
-	Env         string        `yaml:"env" env-default:"local"`
-	StoragePath string        `yaml:"storage_path" env-required:"true"`
-	TokenTTL    time.Duration `yaml:"token_ttl" env-required:"true"`
-	GRPC        GRPCConfig    `yaml:"grpc"`
-	DB          DataBase      `yaml:"database"`
+	Env         string     `yaml:"env" env-default:"local"`
+	StoragePath string     `yaml:"storage_path" env-required:"true"`
+	GRPC        GRPCConfig `yaml:"grpc"`
+	DB          DataBase   `yaml:"database"`
 }
 type DataBase struct {
 	Host     string `yaml:"host"`
@@ -50,6 +48,7 @@ func fetchConfigPath() string {
 
 	flag.StringVar(&res, "config", "", "config path file")
 	flag.Parse()
+
 	if err := godotenv.Load(); err != nil {
 		log.Fatal("Error loading .env file")
 	}
