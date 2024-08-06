@@ -15,8 +15,7 @@ func NewCategoryServerApi(gRPC *grpc.Server) {
 	sandjmav1.RegisterCategoriesServer(gRPC, &categoryServerApi{})
 }
 
-func (s *categoryServerApi) GetCategory(ctx context.Context, req *sandjmav1.Empty) (*sandjmav1.GetAllCategoryResponse, error) {
+func (s *categoryServerApi) GetAllCategory(ctx context.Context, req *sandjmav1.Empty) (*sandjmav1.GetAllCategoryResponse, error) {
 	slog.Info("swsawdcsfd", req)
-	//return &sandjmav1.GetAllCategoryResponse{Category: nil}, nil
-	panic("implement me")
+	return &sandjmav1.GetAllCategoryResponse{Category: nil}, nil
 }

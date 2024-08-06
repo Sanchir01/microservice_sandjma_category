@@ -11,5 +11,7 @@ type App struct {
 
 func NewApp(log *slog.Logger, grpcPort int) *App {
 	grpcApp := grpcapp.NewGrpcApp(log, grpcPort)
-	return &App{grpcApp}
+	return &App{
+		GRPCSrv: grpcApp,
+	}
 }

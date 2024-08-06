@@ -5,7 +5,7 @@ go 1.22.4
 toolchain go1.22.5
 
 require (
-	github.com/Sanchir01/protos_files_job v0.0.0-20240805210031-07990c0de7e2
+	github.com/Sanchir01/protos_files_job v0.0.0-20240806210124-d605dc6e0634
 	github.com/fatih/color v1.17.0
 	github.com/go-chi/chi/v5 v5.1.0
 	github.com/ilyakaznacheev/cleanenv v1.5.0

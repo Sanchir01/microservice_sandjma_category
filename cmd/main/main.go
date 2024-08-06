@@ -20,8 +20,6 @@ func main() {
 
 	lg := setupLogger(cfg.Env)
 
-	//lg.Info("starting application", slog.Any("config", cfg))
-
 	application := app.NewApp(lg, cfg.GRPC.Port)
 
 	go func() {

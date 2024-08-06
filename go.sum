@@ -4,6 +4,8 @@ github.com/BurntSushi/toml v1.2.1 h1:9F2/+DoOYIOksmaJFPw1tGFy1eDnIJXg+UHjuD8lTak
 github.com/BurntSushi/toml v1.2.1/go.mod h1:CxXYINrC8qIiEnFrOxCa7Jy5BFHlXnUU2pbicEuybxQ=
 github.com/Sanchir01/protos_files_job v0.0.0-20240805210031-07990c0de7e2 h1:AIkmng63PevKyMOEuPKfHZs2vV8KnD0FxiA2647TGvU=
 github.com/Sanchir01/protos_files_job v0.0.0-20240805210031-07990c0de7e2/go.mod h1:CUixAlpYaXZ+/cu/rcgg6sM2Bvt3emfftZfwEb2Da+k=
+github.com/Sanchir01/protos_files_job v0.0.0-20240806210124-d605dc6e0634 h1:UB7mQAZz0heRkMH27rlS9capvJbuKPQdrpOwgnVxQ5w=
+github.com/Sanchir01/protos_files_job v0.0.0-20240806210124-d605dc6e0634/go.mod h1:CUixAlpYaXZ+/cu/rcgg6sM2Bvt3emfftZfwEb2Da+k=
 github.com/fatih/color v1.17.0 h1:GlRw1BRJxkpqUCBKzKOw098ed57fEsKeNjpTe3cSjK4=
 github.com/fatih/color v1.17.0/go.mod h1:YZ7TlrGPkiz6ku9fK3TLD/pl3CpsiFyu8N92HLgmosI=
 github.com/go-chi/chi/v5 v5.1.0 h1:acVI1TYaD+hhedDJ3r54HyA6sExp3HfXq7QWEEY/xMw=
