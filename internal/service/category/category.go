@@ -9,19 +9,19 @@ import (
 type Category struct {
 	log             *slog.Logger
 	serviceCategory ServiceCategory
-	appProvider     AppProvider
+	//appProvider     AppProvider
 }
 type ServiceCategory interface {
 	AllCategory(ctx context.Context) ([]models.Category, error)
 }
 
-type AppProvider interface {
-	App(ctx context.Context, appID int) (models.App, error)
-}
+//type AppProvider interface {
+//	App(ctx context.Context, appID int) (models.App, error)
+//}
 
-func New(log *slog.Logger, serviceCategory ServiceCategory, appProvider AppProvider) *Category {
+func New(log *slog.Logger, serviceCategory ServiceCategory) *Category {
 	return &Category{
-		log: log, serviceCategory: serviceCategory, appProvider: appProvider,
+		log: log, serviceCategory: serviceCategory,
 	}
 }
 
@@ -31,5 +31,9 @@ func (s *Category) AllCategory(ctx context.Context) ([]models.Category, error) {
 		slog.String("op", op),
 		slog.String("category", "AllCategory"))
 	log.Info("get all categories service")
-	panic("implement me")
+	categories, err := s.serviceCategory.AllCategory(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return categories, nil
 }

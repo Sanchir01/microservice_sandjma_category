@@ -14,9 +14,10 @@ type GrpcApp struct {
 	port       int
 }
 
-func NewGrpcApp(log *slog.Logger, port int) *GrpcApp {
+func NewGrpcApp(log *slog.Logger, port int, categoryService categorygrpc.Categories) *GrpcApp {
 	gRPCServer := grpc.NewServer()
-	categorygrpc.NewCategoryServerApi(gRPCServer)
+
+	categorygrpc.NewCategoryServerApi(gRPCServer, categoryService)
 	return &GrpcApp{log, gRPCServer, port}
 }
 

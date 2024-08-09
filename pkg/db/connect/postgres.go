@@ -3,6 +3,7 @@ package connect
 import (
 	"fmt"
 	"github.com/Sanchir01/microservice_sandjma_category/internal/config"
+	_ "github.com/jackc/pgx"
 	"github.com/jmoiron/sqlx"
 	"log/slog"
 	"os"
@@ -16,9 +17,10 @@ func PostgresMain(cfg *config.Config, lg *slog.Logger) *sqlx.DB {
 	)
 
 	db, err := sqlx.Open("postgres", postgresString)
-	defer db.Close()
+
 	if err != nil {
 		lg.Error("sqlx.Connect error", slog.String("error", err.Error()))
 	}
+
 	return db
 }

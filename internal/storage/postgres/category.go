@@ -1,4 +1,4 @@
-package storage
+package storagePG
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/samber/lo"
+	"log/slog"
 	"time"
 )
 
@@ -20,6 +21,10 @@ func NewStorage(db *sqlx.DB) *Storage {
 func (str *Storage) AllCategory(ctx context.Context) ([]models.Category, error) {
 	const op = "storage.postgres.AllCategory"
 
+	log := slog.With(
+		slog.String("op", op),
+		slog.String("postgres", "postgres AllCategories"))
+	log.Info("Categories")
 	conn, err := str.db.Connx(ctx)
 	if err != nil {
 		return nil, err
@@ -27,7 +32,7 @@ func (str *Storage) AllCategory(ctx context.Context) ([]models.Category, error) 
 
 	defer conn.Close()
 	var category []dbCategory
-	if err := conn.SelectContext(ctx, &category, "EXPLAIN ANALYZE SELECT * FROM categories"); err != nil {
+	if err := conn.SelectContext(ctx, &category, "SELECT * FROM categories"); err != nil {
 		return nil, err
 	}
 
