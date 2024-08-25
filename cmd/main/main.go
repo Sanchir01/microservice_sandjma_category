@@ -29,6 +29,7 @@ func main() {
 	query := "EXPLAIN ANALYZE SELECT * FROM categories"
 	rows, err := db.Query(query)
 	if err != nil {
+		lg.Error("failed to execute query", slog.String("query", query), slog.String("error", err.Error()))
 		log.Fatal(err)
 	}
 	defer rows.Close()
