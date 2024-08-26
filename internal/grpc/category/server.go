@@ -2,11 +2,13 @@ package categorygrpc
 
 import (
 	"context"
+	"log/slog"
+
 	featureCategory "github.com/Sanchir01/microservice_sandjma_category/internal/feature/category"
 	"github.com/Sanchir01/microservice_sandjma_category/internal/modain/models"
 	sandjmav1 "github.com/Sanchir01/protos_files_job/pkg/gen/golang/category"
 	"google.golang.org/grpc"
-	"log/slog"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 type Categories interface {
@@ -22,7 +24,7 @@ func NewCategoryServerApi(gRPC *grpc.Server, categ Categories) {
 	sandjmav1.RegisterCategoriesServer(gRPC, &categoryServerApi{categories: categ})
 }
 
-func (s *categoryServerApi) GetAllCategory(ctx context.Context, req *sandjmav1.Empty) (*sandjmav1.GetAllCategoryResponse, error) {
+func (s *categoryServerApi) GetAllCategory(ctx context.Context, _ *emptypb.Empty) (*sandjmav1.GetAllCategoryResponse, error) {
 
 	allCategories, err := s.categories.AllCategory(ctx)
 	slog.Error("error", err)
